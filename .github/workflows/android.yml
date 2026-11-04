@@ -27,6 +27,9 @@ jobs:
         with:
           gradle-version: '8.9'
 
+      # sdkmanager 不在默认 PATH 里（会报 command not found），先把它加进 PATH
+      - name: Add sdkmanager to PATH
+        run: echo "$ANDROID_HOME/cmdline-tools/latest/bin" >> $GITHUB_PATH
       - name: Accept Android SDK licenses
         run: yes | sdkmanager --licenses || true
 
